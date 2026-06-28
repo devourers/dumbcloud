@@ -1,0 +1,1 @@
+# dumbcloud-gui -- a two-in-one solution for all your syncing needs
