@@ -1,0 +1,12 @@
+{
+    "handle" : "example_server",
+    "tracked_entries" : {
+        "entry_0":{
+            "path" : "Z:/etc",
+            "files": [
+                "Z:/etc/a.txt",
+                "Z:/etc/b.txt"
+            ]
+        }
+    }
+}
