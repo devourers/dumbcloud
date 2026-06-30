@@ -46,8 +46,31 @@ Server& Server::Instance() {
   static Server instance;
   instance.journal_.AddMessage("Succecfully created dumbcloud_server");
 
-
   //TODO: ALL INIT INFO GOES HERE (like creating folders and whatnot)
+
+  if (!std::filesystem::is_directory("backups")) {
+    std::filesystem::create_directory("backups");
+    instance.journal_.AddMessage("backups/ directory missing, created a new one");
+  }
+  else {
+    //parse backups that are present
+  }
+    
+  if (!std::filesystem::is_directory("named_backups")) {
+    std::filesystem::create_directory("named_backups");
+    instance.journal_.AddMessage("named_backups/ directory missing, created a new one");
+  }
+  else {
+    //parse named backups
+  }
+
+  if (!std::filesystem::is_directory("incoming")) {
+    std::filesystem::create_directory("incoming");
+    instance.journal_.AddMessage("incoming/ directory missing, created a new one");
+  }
+  else {
+    //incoming should be clear on start?
+  }
 
   instance.journal_.AddMessage("Succesfully initiated dumbcloud_server");
 
@@ -74,6 +97,7 @@ void Server::LoadServerConfiguration() {
     dc::utils::TrackedEntry entry;
     entry.entry_name_ = cfg_entry.key();
     entry.entry_path_ = cfg_entry.value()["path"].get<std::string>();
+    this->AddEntry(entry);
     //TODO: for file get file 
   }
 }
